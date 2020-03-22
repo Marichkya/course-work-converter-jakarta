@@ -13,17 +13,7 @@ public class DownloadFile {
 
     @ResponseBody
     public void Download(String fileName, String folderPath, HttpServletResponse response) {
-
-        if (fileName.indexOf(".doc") > -1) response.setContentType("application/msword");
-        if (fileName.indexOf(".docx") > -1) response.setContentType("application/msword");
-        if (fileName.indexOf(".xls") > -1) response.setContentType("application/vnd.ms-excel");
-        if (fileName.indexOf(".csv") > -1) response.setContentType("application/vnd.ms-excel");
-        if (fileName.indexOf(".ppt") > -1) response.setContentType("application/ppt");
-        if (fileName.indexOf(".pdf") > -1) response.setContentType("application/pdf");
-        if (fileName.indexOf(".zip") > -1) response.setContentType("application/zip");
-        if (fileName.indexOf(".html") > -1) response.setContentType("application/html");
-        if (fileName.indexOf(".jpg") > -1) response.setContentType("application/jpg");
-        if (fileName.indexOf(".png") > -1) response.setContentType("application/png");
+        
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
         response.setHeader("Content-Transfer-Encoding", "binary");
         try {
