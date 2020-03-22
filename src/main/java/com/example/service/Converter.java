@@ -43,21 +43,6 @@ public class Converter {
 
     Model model;
 
-    public void generateImageFromPDF(String filename, String extension) {
-        try (final PDDocument document = PDDocument.load(new File(uploadDirectory + "/" + filename))) {
-            PDFRenderer pdfRenderer = new PDFRenderer(document);
-            for (int page = 0; page < document.getNumberOfPages(); ++page) {
-                BufferedImage bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
-                String fileName = uploadDirectory + "image-" + page + "." + "jpg";
-                ImageIOUtil.writeImage(bim, fileName, 300);
-            }
-            document.close();
-        } catch (IOException e) {
-            System.err.println("Exception while trying to create pdf document - " + e);
-        }
-
-    }
-
     @ResponseBody
     public void generatePDFFromImage(String filename, String extension) throws IOException, DocumentException {
         File root = new File(uploadDirectory + "/");
@@ -154,6 +139,21 @@ public class Converter {
 
         }
 
+
+    }
+
+    public void generateImageFromPDF(String filename, String extension) {
+        try (final PDDocument document = PDDocument.load(new File(uploadDirectory + "/" + filename))) {
+            PDFRenderer pdfRenderer = new PDFRenderer(document);
+            for (int page = 0; page < document.getNumberOfPages(); ++page) {
+                BufferedImage bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+                String fileName = uploadDirectory + "image-" + page + "." + "jpg";
+                ImageIOUtil.writeImage(bim, fileName, 300);
+            }
+            document.close();
+        } catch (IOException e) {
+            System.err.println("Exception while trying to create pdf document - " + e);
+        }
 
     }
 
