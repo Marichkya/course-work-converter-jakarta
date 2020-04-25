@@ -25,27 +25,7 @@
             font-size: 16px; /* Set a font-size */
         }
     </style>
-    <script>
-        window.onload = function () {
-            document.getElementById("download").onclick = function () {
-                myFunction()
-            };
 
-            function myFunction() {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "/pdffromppt/upload");
-                xhr.onload = function (event) {
-                    document.getElementById("download").style.display = "block";
-                    document.getElementById("loadButton").style.display = "none";
-                };
-                var formData = new FormData(document.getElementById("myForm"));
-                xhr.send(formData);
-                document.getElementById("download").style.display = "none";
-                document.getElementById("loadButton").style.display = "block";
-            }
-        };
-
-    </script>
 </head>
 
 <body>
@@ -310,5 +290,25 @@
 <!-- MDB core JavaScript -->
 <script src="../static/js/mdb.min.js" th:src="@{/js/mdb.min.js}" type="text/javascript"></script>
 </body>
+<script>
+    window.onload = function () {
+        document.getElementById("download").onclick = function () {
+            myFunction()
+        };
 
+        function myFunction() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/pdffromppt/upload");
+            xhr.onload = function (event) {
+                document.getElementById("download").style.display = "block";
+                document.getElementById("loadButton").style.display = "none";
+            };
+            var formData = new FormData(document.getElementById("myForm"));
+            xhr.send(formData);
+            document.getElementById("download").style.display = "none";
+            document.getElementById("loadButton").style.display = "block";
+        }
+    };
+
+</script>
 </html>
