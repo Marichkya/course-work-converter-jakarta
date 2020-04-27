@@ -39,6 +39,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
@@ -48,11 +55,5 @@ public class UserServiceImpl implements UserService {
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
     }
 }

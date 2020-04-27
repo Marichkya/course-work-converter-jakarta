@@ -15,6 +15,17 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
     private String firstFieldName;
     private String secondFieldName;
 
+    @Override
+    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
+        try {
+            final Object firstObj = BeanUtils.getProperty(value, firstFieldName);
+            final Object secondObj = BeanUtils.getProperty(value, secondFieldName);
+            return firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
+        } catch (final Exception ignore) {}
+        return true;
+    }
+
+
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
@@ -28,13 +39,4 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
         secondFieldName = constraintAnnotation.second();
     }
 
-    @Override
-    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
-        try {
-            final Object firstObj = BeanUtils.getProperty(value, firstFieldName);
-            final Object secondObj = BeanUtils.getProperty(value, secondFieldName);
-            return firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
-        } catch (final Exception ignore) {}
-        return true;
-    }
 }
