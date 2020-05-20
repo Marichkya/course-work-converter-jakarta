@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ConvertuerNTIC</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/static/css/bootstrap.min.css}" href="../main/resources/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link th:href="@{/static/css/mdb.min.css}" href="../main/resources/static/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link th:href="@{/static/css/style.css}" href="../main/resources/static/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Begin Main Layout -->
+<!-- Begin Main Layout -->
+<main class="mt-5 ">
+    <div class="conatiner">
+
+        <div class="singup-form d-flex justify-content-center">
+            <!-- login form -->
+            <!-- Material form register -->
+            <div class="card">
+
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Sign up</strong>
+                </h5>
+                <div class="alert alert-danger" th:if="${existe}">
+                    <p class="text-center">cette user il est déja existe</p>
+                </div>
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-0">
+                    <!-- Form -->
+                    <form th:action="@{/register}" method="post" class="text-center" style="color: #757575;">
+
+                        <div class="form-row">
+                            <div class="col">
+                                <!-- Last name -->
+                                <div class="md-form">
+                                    <input type="text" id="materialRegisterFormLastName" class="form-control"
+                                           name="name">
+                                    <label for="materialRegisterFormLastName">Name </label>
+                                    <span class="text-danger" th:errors="${user.name}"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- E-mail -->
+                        <div class="md-form mt-0">
+                            <input type="email" id="materialRegisterFormEmail" class="form-control" name="email">
+                            <label for="materialRegisterFormEmail">E-mail</label>
+                            <span class="text-danger" th:errors="${user.email}"></span>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="md-form">
+                            <input type="password" id="materialRegisterFormPassword" class="form-control"
+                                   aria-describedby="materialRegisterFormPasswordHelpBlock" name="password">
+                            <label for="materialRegisterFormPassword">Password</label>
+                            <span class="text-danger" th:errors="${user.password}"></span>
+                            <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                                At least 8 characters and 1 digit
+                            </small>
+                        </div>
+
+                        <!-- Sign up button -->
+                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                                type="submit">
+                            Register
+                        </button>
+                    </form>
+                    <!-- Form -->
+
+                </div>
+
+            </div>
+            <!-- Material form register -->
+            <!-- login form -->
+        </div>
+
+    </div>
+</main>
+<!-- Begin Main Layout-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" th:src="@{/static/js/jquery-3.3.1.min.js}" src="../main/resources/static/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" th:src="@{/static/js/popper.min.js}" src="../main/resources/static/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" th:src="@{/static/js/bootstrap.min.js}" src="../main/resources/static/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" th:src="@{/static/js/mdb.min.js}" src="../main/resources/static/js/mdb.min.js"></script>
+</body>
+
+</html>
